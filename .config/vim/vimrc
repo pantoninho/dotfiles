@@ -22,6 +22,9 @@ call plug#end()
 
 colorscheme base16-eighties
 syntax on
+set noshowmode
+
+set backspace=start
 
 " replace default ctrlp grep implementation
 if executable('rg')
