@@ -4,6 +4,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" plugins
 set shell=sh
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
@@ -15,23 +16,52 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'wellle/visual-split.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-source ../coc/cocrc
+colorscheme base16-eighties
+syntax on
 
-
-let g:ale_lint_on_text_changed = 'always'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-
-
+" replace default ctrlp grep implementation
 if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
 endif
 
-set splitbelow
-set splitright
+" add .js suffixes on files? useful for navigating between js requires
 set suffixesadd+=.js
 
-map <silent> <C-b> :NERDTreeToggle<CR>
+" split from right to left and bottom to top
+set splitbelow
+set splitright
 
+" coc recommended settings
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+:source ~/.config/vim/mappings.vim
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
