@@ -1,3 +1,5 @@
+set nocompatible
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -11,25 +13,42 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ctrlpvim/ctrlp.vim'	
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'wellle/visual-split.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
+source ~/.config/vim/mappings.vim
+
+filetype plugin indent on
+set termguicolors
 colorscheme base16-eighties
 syntax on
 set noshowmode
+autocmd CursorHold * silent call CocActionAsync('highlight')
+set autoindent
 
+set signcolumn=yes
 set backspace=start
+set clipboard=unnamed
 
-" replace default ctrlp grep implementation
-if executable('rg')
-  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
-endif
+let g:airline#extensions#coc#enabled = 1
+let airline#extensions#coc#error_symbol = 'E:'
+let airline#extensions#coc#warning_symbol = 'W:'
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " add .js suffixes on files? useful for navigating between js requires
 set suffixesadd+=.js
@@ -56,15 +75,3 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-:source ~/.config/vim/mappings.vim
-
-command! -nargs=0 Prettier :CocCommand prettier.formatFile

@@ -1,3 +1,4 @@
+
 # focus window
 cmd - up : yabai -m window --focus north
 cmd - down : yabai -m window --focus south
@@ -5,8 +6,14 @@ cmd - right : yabai -m window --focus east
 cmd - left : yabai -m window --focus west
 
 # resize windows
-cmd + alt - right : yabai -m window --ratio rel:0.25 
-cmd + alt - left : yabai -m window --ratio rel:-0.25 
+cmd - 0x27 : yabai -m window --ratio rel:-0.25 
+cmd - 0x2A : yabai -m window --ratio rel:0.25 
+
+# move windows through spaces and focus
+shift + cmd - 0x27 : yabai -m window --space prev && \
+		yabai -m space --focus prev
+shift + cmd - 0x2A : yabai -m window --space next && \
+		yabai -m space --focus next
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 shift + cmd - n : yabai -m space --create && \
@@ -17,6 +24,11 @@ shift + cmd - n : yabai -m space --create && \
 # move spaces left and right
 shift + cmd - left : yabai -m space --focus prev
 shift + cmd - right : yabai -m space --focus next
+
+# balance windows
+shift + cmd - up : yabai -m space --balance
+# change split direction
+shift + cmd - down : yabai -m window --toggle split 
 
 # remove space
 shift + cmd - backspace : yabai -m space --destroy && \
