@@ -9,6 +9,7 @@ endif
 
 " plugins
 set shell=/usr/local/bin/fish
+packadd! matchit
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
@@ -27,6 +28,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-dispatch'
+Plug 'sheerun/vim-polyglot'
+Plug 'habamax/vim-asciidoctor'
+Plug 'pantharshit00/vim-prisma'
 call plug#end()
 
 source ~/.config/nvim/mappings.vim
@@ -37,7 +42,6 @@ set noshowmode
 set signcolumn=yes
 set clipboard=unnamed
 set number relativenumber
-filetype plugin indent on
 
 " add .js suffixes on files? useful for navigating between js requires
 set suffixesadd+=.js
@@ -45,15 +49,50 @@ set suffixesadd+=.js
 set splitbelow
 set splitright
 
+set scrolloff=5
+
 
 let g:javascript_plugin_jsdoc = 1
+
+" NERDTree configs
+let NERDTreeShowHidden = 1
 
 " enable airline tabline extension (buffer tab bar)
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
+" asciidoctor-vim configs
+" " Fold sections, default `0`.
+let g:asciidoctor_folding = 1
+" Fold options, default `0`.
+let g:asciidoctor_fold_options = 1
+" Conceal *bold*, _italic_, `code` and urls in lists and paragraphs, default `0`.
+" See limitations in end of the README
+let g:asciidoctor_syntax_conceal = 1
+" Highlight indented text, default `1`.
+let g:asciidoctor_syntax_indented = 0
+" List of filetypes to highlight, default `[]`
+let g:asciidoctor_fenced_languages = ['python', 'c', 'javascript']
+" What to use for HTML, default `asciidoctor`.
+let g:asciidoctor_executable = 'asciidoctor'
+" What extensions to use for HTML, default `[]`.
+let g:asciidoctor_extensions = ['asciidoctor-diagram', 'asciidoctor-rouge']
+" Path to the custom css
+let g:asciidoctor_css_path = '~/docs/AsciiDocThemes'
+" Custom css name to use instead of built-in
+let g:asciidoctor_css = 'haba-asciidoctor.css'
+" What to use for PDF, default `asciidoctor-pdf`.
+let g:asciidoctor_pdf_executable = 'asciidoctor-pdf'
+" What extensions to use for PDF, default `[]`.
+let g:asciidoctor_pdf_extensions = ['asciidoctor-diagram']
+" Path to PDF themes, default `''`.
+let g:asciidoctor_pdf_themes_path = '~/docs/AsciiDocThemes'
+" Path to PDF fonts, default `''`.
+let g:asciidoctor_pdf_fonts_path = '~/docs/AsciiDocThemes/fonts'
 
-let g:indentLine_setColors = 0
+augroup ON_ASCIIDOCTOR_SAVE | au!
+    au BufWritePost *.adoc :Asciidoctor2HTML
+augroup end
 
 " coc recommended settings
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -82,4 +121,7 @@ autocmd FileType javascript,typescript,json setl formatexpr=CocAction('formatSel
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " Disable indentlines for helpfiles
-autocmd FileType help IndentLinesDisable
+autocmd FileType help,fzf,nerdtree IndentLinesDisable
+" indentline config
+let g:indentLine_setColors = 0
+let g:indentLine_setConceal = 0
