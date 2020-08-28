@@ -1,0 +1,79 @@
+{
+  "marketplace": {
+    "%2FUsers%2Fpantoninho%2Fdev%2Fself%2Fstep-interpreter": [
+      " ",
+      "esl"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fweb-dev-outsystems": [
+      "html",
+      "css",
+      "coc-emmet"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fweb-dev-outsystems%2Fslides": [
+      ":"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Flanding-pages%2Fjs-outsystems-lp": [
+      "react"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises%2Fe-commerce-store": [
+      "git",
+      "js"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems": [
+      "coc-emmet",
+      "html"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fself%2Fchat": [
+      "prisma",
+      "apollo"
+    ]
+  },
+  "commands": {
+    "%2FUsers%2Fpantoninho%2Fdev%2Fself%2Fstep-interpreter": [
+      ":"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises%2Fe-commerce-store": [
+      "terminal"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems": [
+      "w"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises": [
+      "hec"
+    ]
+  },
+  "lists": {
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises%2Fe-commerce-store": [
+      " market"
+    ]
+  },
+  "todolist": {
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises%2Fe-commerce-store": [
+      "e"
+    ]
+  },
+  "symbols": {
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises%2Fe-commerce-store": [
+      "route",
+      "isAuthenticated",
+      "isAut",
+      "isAu"
+    ]
+  },
+  "diagnostics": {
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises%2Fe-commerce-store": [
+      "c"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises%2F2-backend%2Fsimple-twitter-server": [
+      " ",
+      " ini"
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems": [
+      " an",
+      " "
+    ],
+    "%2FUsers%2Fpantoninho%2Fdev%2Fac%2Fweb-dev-outsystems%2Fexercises%2F2-backend%2F7-comments": [
+      " +"
+    ]
+  }
+}

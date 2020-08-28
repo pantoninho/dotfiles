@@ -1,0 +1,6 @@
+docthis.documentThis
+terminal.REPL
+terminal.Toggle
+eslint.executeAutofix
+todolist.create
+prettier.formatFile
