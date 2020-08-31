@@ -1,0 +1,56 @@
+
+# focus window
+cmd - up : yabai -m window --focus north
+cmd - down : yabai -m window --focus south
+cmd - right : yabai -m window --focus east
+cmd - left : yabai -m window --focus west
+
+# resize windows
+cmd - 0x27 : yabai -m window --ratio rel:-0.25 
+cmd - 0x2A : yabai -m window --ratio rel:0.25 
+
+# move windows through spaces and focus
+shift + cmd - 0x27 : yabai -m window --space prev && \
+		yabai -m space --focus prev
+shift + cmd - 0x2A : yabai -m window --space next && \
+		yabai -m space --focus next
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+shift + cmd - n : yabai -m space --create && \
+                  set index (yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index') && \
+                  yabai -m window --space "$index" && \
+                  yabai -m space --focus "$index"
+
+# move spaces left and right
+shift + cmd - left : yabai -m space --focus prev
+shift + cmd - right : yabai -m space --focus next
+
+# balance windows
+shift + cmd - up : yabai -m space --balance
+# change split direction
+shift + cmd - down : yabai -m window --toggle split 
+
+# remove space
+shift + cmd - backspace : yabai -m space --destroy && \
+			yabai -m space --focus last
+			
+# create space and focus
+shift + cmd - 0x18 : yabai -m space --create && \
+                  set index (yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index') && \
+                  yabai -m space --focus "$index"
+
+# focus monitor
+# ctrl + alt - z  : yabai -m display --focus prev
+# ctrl + alt - 3  : yabai -m display --focus 3
+
+# send window to monitor and follow focus
+# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+# ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+
+# toggle window split type
+# alt - e : yabai -m window --toggle split
+
+# toggle sticky(+float), topmost, picture-in-picture
+cmd + shift - p : yabai -m window --toggle sticky;\
+          yabai -m window --toggle topmost;\
+          yabai -m window --toggle pip
