@@ -5,11 +5,11 @@ nmap <silent> <leader><space> <Plug>(coc-terminal-toggle)
 " escape to exit terminal
 tnoremap <Esc> <C-\><C-n>
 " CTRL+B to open NERDTree
-map <silent> <C-b> :NERDTreeToggle<CR>
-" open FZF for file search
-map <silent> <C-p> :Files<CR>
-" open Ag for text searching
-map <silent> <C-f> :Ag<CR>
+noremap <silent><expr> <C-b> IsNERDTreeOpen() ? ":NERDTreeToggle<CR>" : ":NERDTreeFind<CR>"
+" open Rg for file search
+map <silent> <C-p> :Files!<CR>
+" open Rg for text searching inside files
+map <silent> <C-f> :Rg!<CR>
 
 " coc mappings
 " Use tab for trigger completion with characters ahead and navigate.
@@ -35,9 +35,16 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> <C-w>d :call CocAction('jumpDefinition', 'vsplit')<CR>
+nmap <silent> <C-w>gd :call CocAction('jumpDefinition', 'vsplit')<CR>
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Symbol renaming.
@@ -62,4 +69,9 @@ function! s:show_documentation()
   else
     call CocAction('doHover')
   endif
+endfunction
+
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction

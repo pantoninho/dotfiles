@@ -13,7 +13,6 @@ packadd! matchit
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'wellle/visual-split.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-signify'
@@ -24,16 +23,16 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-dispatch'
 Plug 'sheerun/vim-polyglot'
-Plug 'habamax/vim-asciidoctor'
-Plug 'pantharshit00/vim-prisma'
 call plug#end()
 
 source ~/.config/nvim/mappings.vim
 
+syntax on
+
+" use utf-8 text encoding
+set encoding=utf-8
 " use terminal colors
 set termguicolors
 " set colorscheme from base16 themes collection

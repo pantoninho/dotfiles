@@ -1,4 +1,6 @@
 {
   "javascript.suggestionActions.enabled": false,
-  "javascript.validate.enable": false
+  "javascript.validate.enable": false,
+  "prettier.eslintIntegration": true,
+  "emmet.includeLanguages": { "javascript": "javascriptreact" }
 }
